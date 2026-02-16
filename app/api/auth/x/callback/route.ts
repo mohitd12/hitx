@@ -1,4 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
+import { ERROR_CODES } from '@/lib/errors/app-error';
+import { toAppError } from '@/lib/result';
 import { clearAuthSessionCookie, clearOauthTransientCookie, createAuthSessionCookie, readOauthTransient } from '@/server/auth/session';
 import { exchangeXCodeForToken, fetchAuthenticatedXUser } from '@/server/x/oauth';
 
@@ -48,8 +50,11 @@ export async function GET(request: NextRequest) {
     response.cookies.set(clearTransient.name, clearTransient.value, clearTransient.options);
 
     return response;
-  } catch {
-    const response = NextResponse.redirect(redirectToHome('auth=failed&reason=token_exchange'));
+  } catch (error) {
+    const appError = toAppError(error);
+    const reason =
+      appError.code === ERROR_CODES.TOKEN_REVOKED ? 'revoked' : appError.code === ERROR_CODES.RATE_LIMITED ? 'rate_limited' : 'token_exchange';
+    const response = NextResponse.redirect(redirectToHome(`auth=failed&reason=${reason}`));
     const clearSession = clearAuthSessionCookie();
     const clearTransient = clearOauthTransientCookie();
 

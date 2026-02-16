@@ -4,27 +4,17 @@ import { ubuntu } from './fonts';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'Minimal Theme Starter – Next.js Multi-Theme Template',
+  title: 'HitX',
   description:
-    'A lightweight, production-ready Next.js starter template with multi-theme support, Zustand state management, and TailwindCSS styling. Built for fast UI development and clean architecture.',
-  applicationName: 'minimal-theme-starter',
+    'Connect your X account, explore your posts as floating cards, and search them instantly in one fast single-page experience.',
+  applicationName: 'HitX',
   generator: 'Next.js',
-  keywords: [
-    'Next.js starter',
-    'Next.js theme template',
-    'Next.js multi theme',
-    'TailwindCSS template',
-    'Zustand state management',
-    'Next.js boilerplate',
-    'light dark theme',
-    'React UI starter',
-    'frontend starter template',
-  ],
+  keywords: ['HitX', 'X posts search', 'Next.js 16', 'React 19', 'TailwindCSS', 'OAuth 2.0'],
   authors: [{ name: 'Mohit Das' }],
   creator: 'Mohit Das',
-  publisher: 'minimal-theme-starter',
+  publisher: 'HitX',
   other: {
-    version: '1.0.0',
+    version: '0.1.0',
   },
 };
 
